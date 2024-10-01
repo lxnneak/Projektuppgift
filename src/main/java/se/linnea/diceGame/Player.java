@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
-    String name;
-    int score;
+    private String name;
+    private int score;
 
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
