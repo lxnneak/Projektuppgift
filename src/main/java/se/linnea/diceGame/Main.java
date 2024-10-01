@@ -3,43 +3,41 @@ package se.linnea.diceGame;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Välkommen till spelet");
-        System.out.println("Ange namn för spelare 1");
-        Player player1 = new Player(sc.nextLine(), 0);
-        System.out.println("Ange namn för spelare 2");
-        Player player2 = new Player(sc.nextLine(), 0);
 
-        System.out.println(player1.getName() + ", tryck enter för att slå första kastet");
-        String input = sc.nextLine();
+        // 2 players skapas, name från metod askName(), score = 0 till att börja med
+        Player player1 = new Player(askName(1), 0);
+        Player player2 = new Player(askName(2), 0);
 
-        player1.rollDice();
+        // spelarna slår tärningen varannan gång, 2 ggr
+        for (int i = 0; i < 2; i++) {
+            player1.rollDice();
+            player2.rollDice();
+        }
 
-        System.out.println(player2.getName() + ", tryck enter för att slå första kastet");
-        input = sc.nextLine();
+        // visar totala poängen
+        player1.displayScore();
+        player2.displayScore();
 
-        player2.rollDice();
-
-        System.out.println(player1.getName() + ", tryck enter för att slå andra kastet");
-        input = sc.nextLine();
-
-        player1.rollDice();
-
-        System.out.println(player2.getName() + ", tryck enter för att slå andra kastet");
-        input = sc.nextLine();
-
-        player2.rollDice();
-
-        System.out.println(player1.getName() + " fick " + player1.getScore() + "poäng");
-        System.out.println(player2.getName() + " fick " + player2.getScore() + "poäng");
-
-        if(player1.getScore() > player2.getScore()) {
+        // jämför poängen och visar vinnare
+        if (player1.getScore() > player2.getScore()) {
             System.out.println("Vinnare: " + player1.getName());
-        } else if(player1.getScore() < player2.getScore()) {
+        } else if (player1.getScore() < player2.getScore()) {
             System.out.println("Vinnare: " + player2.getName());
         } else {
             System.out.println("Oavgjort!");
         }
+
+    }
+
+
+    // frågar efter och returnerar spelarens namn
+    // player nr skickas med från main och skrivs ut så att man vet vilken spelare det gäller
+    public static String askName(int player) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ange namn för spelare " + player);
+        return sc.nextLine();
     }
 }
