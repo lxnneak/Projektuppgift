@@ -25,7 +25,7 @@ public class Player {
 
     public void rollDice() {
         System.out.println(this.getName() + ", tryck enter för att slå tärningen"); // låter spelaren interagera med spelet
-        String input = scanner.nextLine();  // input används ej, spelet väntar på spelaren innan det fortsätter
+        scanner.nextLine();  // spelet väntar på spelaren innan det fortsätter
 
         int roll = random.nextInt(6) + 1; // tärningen slås
         this.score += roll; // kastet adderas till spelarens score
